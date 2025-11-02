@@ -1,0 +1,11 @@
+[1]Installing MariaDB
+1. run command "sudo dnf install @mysql"
+
+[2]Running mysql in terminal
+1. run command "sudo mysql"
+2. if it fails, do [3]
+
+[3]Fixing "sudo mysql" not working
+1. check status by doing "sudo systemctl status mariadb"
+2. then do "sudo systemctl start mariadb"
+3. optionally do "sudo systemctl enable mariadb", so it starts automatically every boot
