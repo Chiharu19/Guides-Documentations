@@ -9,3 +9,199 @@
 1. check status by doing "sudo systemctl status mariadb"
 2. then do "sudo systemctl start mariadb"
 3. optionally do "sudo systemctl enable mariadb", so it starts automatically every boot
+
+[4]Actual Operation in MYSQL
+
+------------------------------------------------------------
+### Common Data Types
+
+	Type				Description
+/-----------------------------------------------------------/
+	INT				Whole numbers
+	FLOAT / DOUBLE			Decimal numbers
+	VARCHAR(n)			Variable-length string
+	TEXT				Long text
+	DATE				YYYY-MM-DD
+	DATETIME			YYYY-MM-DD HH:MM:SS
+	BOOLEAN				True/False
+	BLOB				Binary Data(e.g., images)
+------------------------------------------------------------
+### Database Commands
+
+-- Show all databases
+SHOW DATABASES;
+
+-- Create a new database
+CREATE DATABASE db_name;
+
+-- Use a database
+USE db_name;
+
+-- Delete a database
+DROP DATABASE db_name;
+
+-- Rename a database (manual way)
+CREATE DATABASE new_name;
+RENAME TABLE old_name.table1 TO new_name.table1;
+DROP DATABASE old_name;
+
+------------------------------------------------------------
+### Table Commands
+
+-- Show all tables
+SHOW TABLES;
+
+-- Create a new table
+CREATE TABLE table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    email VARCHAR(100)
+);
+
+-- Describe table structure
+DESCRIBE table_name;
+
+-- Show table creation query
+SHOW CREATE TABLE table_name;
+
+-- Rename a table
+RENAME TABLE old_name TO new_name;
+
+-- Delete a table
+DROP TABLE table_name;
+
+-- Clear table data (keep structure)
+TRUNCATE TABLE table_name;
+
+------------------------------------------------------------
+### Data Manipulation (CRUD)
+
+-- Insert data
+INSERT INTO table_name (name, age, email)
+VALUES ('John', 25, 'john@email.com');
+
+-- View all data
+SELECT * FROM table_name;
+
+-- Select specific columns
+SELECT name, email FROM table_name;
+
+-- Filter rows
+SELECT * FROM table_name WHERE age > 18;
+
+-- Update data
+UPDATE table_name
+SET email = 'new@email.com'
+WHERE id = 1;
+
+-- Delete specific data
+DELETE FROM table_name WHERE id = 1;
+
+-- Delete all data (careful!)
+DELETE FROM table_name;
+
+------------------------------------------------------------
+### Filtering & Sorting
+
+-- Sorting results
+SELECT * FROM users ORDER BY age ASC;
+SELECT * FROM users ORDER BY age DESC;
+
+-- Limit results
+SELECT * FROM users LIMIT 5;
+
+-- Conditions
+SELECT * FROM users WHERE age BETWEEN 18 AND 30;
+SELECT * FROM users WHERE name LIKE 'A%';
+SELECT * FROM users WHERE email IS NULL;
+SELECT * FROM users WHERE email IS NOT NULL;
+
+-- Multiple conditions
+SELECT * FROM users WHERE age > 18 AND name LIKE 'J%';
+
+------------------------------------------------------------
+### Joins
+
+-- INNER JOIN (only matching rows)
+SELECT users.name, orders.amount
+FROM users
+INNER JOIN orders ON users.id = orders.user_id;
+
+-- LEFT JOIN (all from left, matches from right)
+SELECT users.name, orders.amount
+FROM users
+LEFT JOIN orders ON users.id = orders.user_id;
+
+-- RIGHT JOIN (all from right, matches from left)
+SELECT users.name, orders.amount
+FROM users
+RIGHT JOIN orders ON users.id = orders.user_id;
+
+------------------------------------------------------------
+### Aggregate functions
+
+SELECT COUNT(*) FROM users;
+SELECT AVG(age) FROM users;
+SELECT SUM(amount) FROM orders;
+SELECT MIN(age) FROM users;
+SELECT MAX(age) FROM users;
+
+------------------------------------------------------------
+### Grouping Data
+
+-- Group by and aggregate
+SELECT department, COUNT(*) AS total_employees
+FROM employees
+GROUP BY department;
+
+-- Group with condition
+SELECT department, COUNT(*) AS total
+FROM employees
+GROUP BY department
+HAVING total > 5;
+
+------------------------------------------------------------
+### Indexes
+
+-- Create index
+CREATE INDEX idx_name ON users(name);
+
+-- Show indexes
+SHOW INDEX FROM users;
+
+-- Drop index
+DROP INDEX idx_name ON users;
+
+------------------------------------------------------------
+### User & Privileges
+
+-- Create user
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+
+-- Grant privileges
+GRANT ALL PRIVILEGES ON db_name.* TO 'user'@'localhost';
+
+-- Show grants
+SHOW GRANTS FOR 'user'@'localhost';
+
+-- Revoke privileges
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user'@'localhost';
+
+-- Delete user
+DROP USER 'user'@'localhost';
+
+-- Apply changes
+FLUSH PRIVILEGES;
+
+------------------------------------------------------------
+### Backup & Restore
+
+# Backup database
+mysqldump -u root -p db_name > backup.sql
+
+# Restore database
+mysql -u root -p db_name < backup.sql
+
+------------------------------------------------------------
+
