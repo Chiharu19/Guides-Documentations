@@ -1,0 +1,10 @@
+Template: "sudo chown [OPTION] owner:group file"
+
+Example: "sudo chown -R chiharu:chiharu *"
+Explanation:
+[-R]	operate recursively
+[*]	apply to visible files in current directory
+
+Example: "sudo chown -R chiharu:chiharu ."
+Explanation:
+[.]	apply to ALL files (hidden included) starting from the current directory
