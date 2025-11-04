@@ -1,0 +1,76 @@
+BASIC SETUP
+
+git init                        # Create a new local repo
+git clone <url>                 # Clone a remote repo
+git config user.name "YourName" # Set username
+git config user.email "you@email.com" # Set email
+git remote -v                   # Show remotes
+git remote add <name> <url>     # Add a new remote (e.g. origin, prof)
+
+-------------------------------------------------------------------------------------------
+BRANCHING
+
+git branch                      # List local branches
+git branch -a                   # List all (local + remote)
+git branch <name>               # Create a new branch
+git checkout <name>             # Switch to branch
+git checkout -b <name>          # Create and switch to new branch
+git branch -d <name>            # Delete local branch (safe)
+git branch -D <name>            # Delete local branch (force)
+git branch -vv                  # Show branches + upstreams
+git branch --set-upstream-to=<remote>/<branch>  # Set upstream
+
+-------------------------------------------------------------------------------------------
+REMOTES
+
+git fetch <remote>              # Get latest data from remote (no merge)
+git pull                        # Fetch + merge current branch
+git push                        # Push current branch
+git push -u <remote> <branch>   # Push and set upstream
+git push <remote> --delete <branch>  # Delete remote branch
+git remote rename <old> <new>   # Rename a remote
+git remote remove <name>        # Remove a remote
+
+-------------------------------------------------------------------------------------------
+COMMITS
+
+git status                      # Check status of files
+git add <file>                  # Stage file
+git add .                       # Stage all changes
+git restore --staged <file>     # Unstage file
+git commit -m "message"         # Commit changes
+git log --oneline               # Compact log view
+git diff                        # Show unstaged changes
+git diff --staged               # Show staged changes
+
+-------------------------------------------------------------------------------------------
+SYNCING BRANCHES
+
+git fetch origin                # Update remote-tracking branches
+git merge origin/<branch>       # Merge remote branch into local
+git merge feature		# Merge specified local branch into current local branch
+git reset --hard origin/<branch> # Make local branch identical to remote
+git pull --rebase               # Pull but rebase instead of merge
+git push                        # Push local commits to remote
+
+-------------------------------------------------------------------------------------------
+UNFO / FIX
+
+git restore <file>              # Restore modified file to last commit
+git checkout -- <file>          # Same as above (older syntax)
+git reset HEAD~1                # Undo last commit but keep changes
+git reset --hard HEAD~1         # Undo last commit + discard changes
+git revert <commit>             # Create new commit that undoes changes
+git clean -fd                   # Remove untracked files/folders
+
+-------------------------------------------------------------------------------------------
+INSPECT
+
+git log --graph --oneline --all --decorate  # Visual commit tree
+git show <commit>            # View details of a commit
+git diff <branch1>..<branch2> # Compare branches
+git remote show <name>       # Show detailed info about a remote
+git rev-parse --abbrev-ref --symbolic-full-name @{u}  # Show upstream
+
+-------------------------------------------------------------------------------------------
+
