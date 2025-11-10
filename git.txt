@@ -24,6 +24,7 @@ git branch --set-upstream-to=<remote>/<branch>  # Set upstream
 REMOTES
 
 git fetch <remote>              # Get latest data from remote (no merge)
+git fetch -p|--prune		# Remove any branches that no longer exist on the remote
 git pull                        # Fetch + merge current branch
 git push                        # Push current branch
 git push -u <remote> <branch>   # Push and set upstream
