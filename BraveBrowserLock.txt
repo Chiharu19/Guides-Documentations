@@ -1,0 +1,3 @@
+If you can't open Brave Browser:
+1. Check if the "SingletonLock" file exists in "~/.config/BraveSoftware/Brave-Browser/"
+2. Delete
