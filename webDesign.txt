@@ -1,8 +1,0 @@
-IF you have an overlay and the main content being covered can be scrolled despite the overlay being opened:
-1. add "touch-action: none;" css property to the overlay
-
-IF you want to add logic or design while your webpage is loading:
-1. In Javascript you can call "window.onload = () => {// your code here}"
-
-IF you want to add logic or design when the user does something thatleaves/refreshes the webpage:
-1. In Javascript you can do "window.addEventListener("beforeunload", (e) => {// your code here});"
