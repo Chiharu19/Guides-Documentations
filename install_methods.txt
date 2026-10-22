@@ -1,1 +1,3 @@
 [RPM] "sudo dnf install /path/to/package.rpm"
+
+[.tar.gz] "tar -xzf filename.tar.gz"
